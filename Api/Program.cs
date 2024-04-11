@@ -6,6 +6,7 @@ using infraestrocture.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -18,7 +19,24 @@ builder.Services.AddScoped<IClienteRepository, ClientesRepository>();
 //Services
 builder.Services.AddTransient<IUsuarioServise, UsuarioService>();
 builder.Services.AddTransient<IClienteService, ClienteService>();
+builder.Services.AddCors(options =>
+{
 
+    options.AddPolicy("app", policyBuilder =>
+    {
+        policyBuilder.WithOrigins("https://localhost:7226");
+       
+        policyBuilder.AllowAnyHeader();
+        policyBuilder.AllowAnyMethod();
+    });
+
+    options.AddPolicy("jsApp", policyBuilder =>
+    {
+        policyBuilder.WithOrigins("http://127.0.0.1:5500");
+        policyBuilder.AllowAnyHeader();
+        policyBuilder.AllowAnyMethod();
+    });
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -39,5 +57,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors("jsApp");
+
 
 app.Run();

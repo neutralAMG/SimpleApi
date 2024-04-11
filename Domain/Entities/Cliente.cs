@@ -11,5 +11,6 @@ namespace Domain.Entities
         public int IdCliente { get; set; }
         public int IdUsuario { get; set; }
         public decimal pago { get; set; }
+
     }
 }

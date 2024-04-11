@@ -6,7 +6,7 @@ using Aplication.Dtos.Usuario;
 using Aplication.Models;
 using Aplication.Validaciones;
 using infraestrocture.Interfaces;
-using Microsoft.IdentityModel.Tokens;
+
 
 namespace Aplication.Services
 {
@@ -46,11 +46,9 @@ namespace Aplication.Services
                 {
                     IdUsuario = us.IdUsuario,
                     Nombre = us.Nombre,
-                    Telefono = us.Telefono,
-                    Fecha_creacion = us.Fecha_creacion,
                     Email = us.Email,
+                    Telefono = us.Telefono,
                     tipo = us.tipo,
-                    Contrasena = us.Contrasena,
 
                 }).ToList();
 
@@ -78,12 +76,10 @@ namespace Aplication.Services
                 result.Data = new UsuarioGetModel()
                 {
                     IdUsuario = selectedUsuario.IdUsuario,
+                    Email = selectedUsuario.Email,
                     Nombre = selectedUsuario.Nombre,
                     Telefono = selectedUsuario.Telefono,
-                    Fecha_creacion = selectedUsuario.Fecha_creacion,
-                    Email = selectedUsuario.Email,
                     tipo = selectedUsuario.tipo,
-                    Contrasena = selectedUsuario.Contrasena,
                 };
 
 
@@ -114,14 +110,12 @@ namespace Aplication.Services
 
                 result.Data = new UsuarioGetModel()
                {
-                   IdUsuario = selectedUsuario.IdUsuario,
-                   Nombre = selectedUsuario.Nombre,
-                   Telefono = selectedUsuario.Telefono,
-                   Fecha_creacion = selectedUsuario.Fecha_creacion,
-                   Email = selectedUsuario.Email,
-                   tipo = selectedUsuario.tipo,
-                   Contrasena = selectedUsuario.Contrasena,
-               };
+                    IdUsuario = selectedUsuario.IdUsuario,
+                    Nombre = selectedUsuario.Nombre,
+                    Email = selectedUsuario.Email,
+                    Telefono = selectedUsuario.Telefono,
+                    tipo = selectedUsuario.tipo,
+                };
                 result.message = "Usuario recuperado con exito";
                 return result;
             }catch (Exception ex) { 
